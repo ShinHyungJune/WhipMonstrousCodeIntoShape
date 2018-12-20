@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+use App\Http\Forms\PublishPostForm;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::post('/posts', function (\App\Http\Requests\PublishPostForm $form) {
+    $form->persist();
+
+    return 'success';
 });
