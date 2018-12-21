@@ -21,3 +21,5 @@ Route::post('/posts', function (\App\Http\Requests\PublishPostForm $form) {
 
     return 'success';
 });
+
+Route::get('/purchases', 'PurchasesController@store');
