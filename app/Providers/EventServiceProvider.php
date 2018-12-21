@@ -15,9 +15,16 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        Registered::class => [
+        /*Registered::class => [
             SendEmailVerificationNotification::class,
-        ],
+        ],*/
+        // SendWelcomeEmail 리스너는
+        // UserRegistered 이벤트가 발생하면
+        // 트리거됨.
+        'App\Events\UserRegistered' => [
+            'App\Listeners\SendWelcomeEmail',
+            'App\Listeners\AddUserToDefaultNewsletterList'
+        ]
     ];
 
     /**

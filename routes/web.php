@@ -23,3 +23,4 @@ Route::post('/posts', function (\App\Http\Requests\PublishPostForm $form) {
 });
 
 Route::get('/purchases', 'PurchasesController@store');
+Route::get('/users', 'UserController@store');
