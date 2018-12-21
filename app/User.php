@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Events\UserRegistered;
+use App\Stats;
 
 class User extends Authenticatable
 {
@@ -29,13 +30,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public static function register($attributes)
+    public function stats()
     {
-        // 자기 자신 접근은 static:: 이렇게 사용.
-        $user = static::create($attributes);
-
-        event(new UserRegistered($user));
-
-        return $user;
+        return new Stats($this);
     }
+
+    public function favorites()
+    {
+        return $this->hasMany(Favorite::class);
+    }
+    // 밑에처럼 하다보면 괴물처럼 불어남.
+    /*public function favoritesCount()
+    {
+        return $this->favorites()->count();
+    }*/
 }
