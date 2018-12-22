@@ -30,6 +30,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function stats()
     {
         return new Stats($this);
@@ -44,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->favorites()->count();
     }*/
+
+    public function isAdmin()
+    {
+        return true;
+    }
 }
