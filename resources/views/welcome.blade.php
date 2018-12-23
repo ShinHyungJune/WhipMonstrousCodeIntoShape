@@ -11,10 +11,6 @@
 
     </head>
     <body>
-        <form action="/posts" method="post">
-            {{csrf_field()}}
-            <input type="text" name="body">
-            <button type="submit">제출</button>
-        </form>
+        {{$user->present()->}}
     </body>
 </html>
